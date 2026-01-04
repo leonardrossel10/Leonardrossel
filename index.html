@@ -47,10 +47,29 @@ const info = document.getElementById('info');
 
 let images = []; // {dataUrl, title, desc}
 
-function load(){
+async function load(){
   try{ images = JSON.parse(localStorage.getItem(KEY) || '[]'); }catch(e){ images = []; }
   render();
   info.textContent = 'Info : prêt. ' + images.length + ' images chargées depuis localStorage.';
+
+  // Si aucun item en localStorage, tenter d'initialiser automatiquement depuis localstorage_seed.json
+  if(images.length === 0){
+    try{
+      const res = await fetch('localstorage_seed.json');
+      if(res.ok){
+        const data = await res.json();
+        if(Array.isArray(data) && data.length > 0){
+          localStorage.setItem(KEY, JSON.stringify(data));
+          images = data;
+          render();
+          info.textContent = 'LocalStorage initialisé automatiquement ('+images.length+' images).';
+        }
+      }
+    }catch(e){
+      // fail silently — garde le comportement existant si le seed n'est pas disponible
+      console.warn('Auto-seed failed:', e);
+    }
+  }
 }
 
 function save(){
