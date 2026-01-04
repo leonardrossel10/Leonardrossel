@@ -3,20 +3,20 @@ set -euo pipefail
 # Simple deploy helper — runs optimization, regeneration, git commit and push
 # Usage: just run this script after you copied your new images into the `images/` folders.
 
-REPO="/Users/leonardrossel/Desktop/MonSitePhotos_copie"
-OPT_SCRIPT="/Users/leonardrossel/Desktop/MonSitePhotos_tools/optimize_images.py"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+REPO="$ROOT"
+OPT_SCRIPT="$ROOT/Tools_push/optimize_images.py"
 
 cd "$REPO"
 echo "[push_photo] Working in $REPO"
 
-if [ ! -f "$OPT_SCRIPT" ]; then
-  echo "Optimization script not found: $OPT_SCRIPT" >&2
-  echo "Run: python3 -m pip install --user Pillow" >&2
-  exit 1
+if [ -f "$OPT_SCRIPT" ]; then
+  echo "[push_photo] Optimizing up to 50 newest images..."
+  python3 "$OPT_SCRIPT" --root images --max 50 --max-width 1600 --quality 80 --convert-webp --inplace || echo "[push_photo] Optimization script failed (continuing)"
+else
+  echo "[push_photo] No local optimizer found at $OPT_SCRIPT — skipping optimization"
+  echo "If you want optimization, place an optimize_images.py in Tools_push/ or adapt this script."
 fi
-
-echo "[push_photo] Optimizing up to 50 newest images..."
-python3 "$OPT_SCRIPT" --root images --max 50 --max-width 1600 --quality 80 --convert-webp --inplace
 
 echo "[push_photo] Regenerating gallery pages..."
 python3 generate_gallery.py

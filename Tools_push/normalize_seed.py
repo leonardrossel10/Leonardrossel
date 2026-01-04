@@ -15,8 +15,14 @@ def normalize(seed_path: Path):
     out = []
     for o in data:
         url = o.get('dataUrl','')
-        url = url.replace('/.thumbs/.thumbs/','/.thumbs/')
-        url = url.replace('/.thumbs/','/images/')
+        # collapse multiple .thumbs segments
+        while '/.thumbs/.thumbs/' in url:
+            url = url.replace('/.thumbs/.thumbs/','/.thumbs/')
+        # if url contains any '/.thumbs/' segment, strip everything up to it and keep the remainder
+        if '/.thumbs/' in url:
+            idx = url.find('/.thumbs/')
+            url = url[idx+len('/.thumbs/'):]
+            url = 'images/' + url.lstrip('/')
         o['dataUrl'] = url
         if url in seen:
             continue

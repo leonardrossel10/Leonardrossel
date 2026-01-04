@@ -1,101 +1,11 @@
 [
   {
-    "dataUrl": "images/.thumbs/top_hero.webp",
+    "dataUrl": "images/top_hero.jpg",
     "title": "",
     "desc": ""
   },
   {
-    "dataUrl": "images/.thumbs/top_hero.jpg",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/Paysage/DSC01462.webp",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/Paysage/DSC01462.jpg",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/profil/IMG_5545.jpg",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/profil/IMG_5548.jpg",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/profil/IMG_5545.webp",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/profil/IMG_5548.webp",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/.thumbs/top_hero.webp",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/.thumbs/top_hero.jpg",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/Portrait/DSC00937.webp",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/Portrait/DSC00937.jpg",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/Portrait/DSC01029.webp",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/Portrait/DSC01029.jpg",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/Sport/DSC00983.webp",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/Sport/DSC00996.jpg",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/Sport/DSC00983.jpg",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/Sport/DSC00996.webp",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/Voiture/DSC01371.webp",
-    "title": "",
-    "desc": ""
-  },
-  {
-    "dataUrl": "images/.thumbs/Voiture/DSC01371.jpg",
+    "dataUrl": "images/top_hero.webp",
     "title": "",
     "desc": ""
   }

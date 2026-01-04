@@ -8,8 +8,10 @@ import shutil
 import json
 
 
-# Project root and images folder
-d = os.path.expanduser('~/Desktop/MonSitePhotos')
+# Project root and images folder — use the script's parent dir so generation
+# targets the current repository copy instead of a hard-coded desktop path.
+PROJECT_ROOT = Path(__file__).resolve().parent
+d = str(PROJECT_ROOT)
 imgdir = os.path.join(d, 'images')
 
 # Pillow for thumbnails
@@ -163,6 +165,30 @@ def collect_groups():
             elif os.path.isfile(full) and entry.lower().endswith(valid_ext):
                 # skip loose files at project root (do not create a 'Général' group)
                 continue
+    # Fallbacks: if no groups found, try using `miniature_*` folders as collections
+    if not groups:
+        for entry in sorted(os.listdir(imgdir)):
+            low = entry.lower()
+            if low.startswith('miniature'):
+                full = os.path.join(imgdir, entry)
+                if os.path.isdir(full):
+                    # derive group name from miniature folder (e.g. miniature_paysage -> Paysage)
+                    suffix = entry
+                    if entry.startswith('miniature_'):
+                        suffix = entry.split('miniature_', 1)[1]
+                    elif entry.startswith('miniature '):
+                        suffix = entry.split('miniature ', 1)[1]
+                    group_name = suffix.capitalize() if suffix else 'Général'
+                    imgs = [os.path.join('images', entry, f) for f in sorted(os.listdir(full))
+                            if f.lower().endswith(valid_ext)]
+                    if imgs:
+                        groups[group_name] = imgs
+        # Last resort: collect loose images directly under images/
+        if not groups:
+            imgs = [os.path.join('images', f) for f in sorted(os.listdir(imgdir)) if f.lower().endswith(valid_ext)]
+            if imgs:
+                groups['Général'] = imgs
+
     return groups
 
 
